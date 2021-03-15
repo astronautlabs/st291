@@ -1,10 +1,10 @@
 {
   "name": "@astronautlabs/st291",
+  "version": "0.0.1",
   "access": "public",
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.1",
   "description": "Implements the ST 291 ancillary data syntax",
   "main": "dist/index.js",
   "directories": {
