@@ -20,6 +20,8 @@ export class Serializer implements ISerializer {
     }
 
     write(writer: BitstreamWriter, type: any, parent: BitstreamElement, field: FieldDefinition, buffer: any) {
+        let length = resolveLength(field.length, parent, field);
+        
         if (!(buffer instanceof Buffer))
             throw new Error(`Value must be Buffer`);
         
