@@ -33,6 +33,9 @@ export class Serializer implements ISerializer {
         if (!(buffer instanceof Buffer))
             throw new Error(`Value must be Buffer`);
         
+        if (field.options?.buffer?.truncate === false)
+            length = buffer.length;
+        
         for (let i = 0; i < length; ++i) {
             writer.write(2, parity(buffer[i]));
             writer.write(8, buffer[i]);
