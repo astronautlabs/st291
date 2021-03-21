@@ -32,7 +32,9 @@ export class Packet extends BitstreamElement {
     @Field(2, { writtenValue: i => parity(i.userDataCount) })
     userDataCountParity : number;
 
-    @Field(8)
+    @Field(8, {
+        writtenValue: i => i.measure(i => i.$userDataStart, i => i.$userDataEnd) / 10
+    })
     userDataCount : number;
 
     @Marker() $userDataStart;
