@@ -3,6 +3,7 @@
  */
 
 import { BitstreamElement, DefaultVariant, Field, Marker, Variant, VariantMarker } from "@astronautlabs/bitstream";
+import { checksum } from "./checksum";
 import { parity } from "./parity";
 import { Serializer as ST291Serializer } from "./serializer";
 
@@ -10,6 +11,8 @@ export class Packet extends BitstreamElement {
 
     @Field(10)
     ancillaryDataFlag : number = 0x03FC;
+
+    @Marker() $checksumStart;
 
     @Field(2, { writtenValue: i => parity(i.did) })
     didParity : number;
@@ -42,12 +45,10 @@ export class Packet extends BitstreamElement {
     @VariantMarker() $variant;
 
     @Marker() $userDataEnd;
-
-    @Field(1)
-    checksumParity : number = 0; // todo
-
-    @Field(9)
-    checksum : number = 0; // todo
+    @Marker() $checksumEnd;
+    
+    @Field(10, { writtenValue: i => checksum(this) })
+    checksum : number = 0;
 }
 
 @DefaultVariant()
