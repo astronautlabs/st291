@@ -2,7 +2,14 @@
 
 [![npm](https://img.shields.io/npm/v/@astronautlabs/st291)](https://npmjs.com/package/@astronautlabs/st291)
 
-Implementation of ST 291 ancillary packets
+> **[📜 ST 291-1:2011](https://ieeexplore.ieee.org/document/7291794)**  
+> Ancillary Data Packet and Space Formatting
+
+> ✅ **Release Quality**  
+> This library is ready for production
+
+Implementation of ST 291 in Typescript
+
 
 # Installation
 
