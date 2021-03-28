@@ -1,5 +1,5 @@
 export function parity(byte : number) {
-    let count = 0;
+    let count = byte & 0x1;
     for (let i = 0; i < 8; ++i)
         count += ((byte >>= 1) & 0x1) ? 1 : 0;
 
