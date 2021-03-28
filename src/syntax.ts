@@ -2,7 +2,7 @@
  * © 2021 Astronaut Labs, LLC.
  */
 
-import { BitstreamElement, Field, Marker, Variant, VariantMarker } from "@astronautlabs/bitstream";
+import { BitstreamElement, DefaultVariant, Field, Marker, Variant, VariantMarker } from "@astronautlabs/bitstream";
 import { parity } from "./parity";
 import { Serializer as ST291Serializer } from "./serializer";
 
@@ -50,8 +50,8 @@ export class Packet extends BitstreamElement {
     checksum : number = 0; // todo
 }
 
-@Variant(i => true, { priority: 'last' })
+@DefaultVariant()
 export class UnknownPacket extends Packet {
-    @Field(i => i.userDataCount, { serializer: new ST291Serializer() })
+    @Field(i => i.userDataWords?.length ?? i.userDataCount, { serializer: new ST291Serializer() })
     userDataWords : Buffer;
 }
