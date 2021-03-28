@@ -4,7 +4,7 @@ import { checksum } from "./checksum";
 import { BitstreamElement, Field, Marker } from "@astronautlabs/bitstream";
 
 describe("checksum", it => {
-    it.only('produces the correct value', async () => {
+    it('produces the correct value', async () => {
         class Sample extends BitstreamElement {
             @Marker() $checksumStart;
             @Field(1) p1 : number = 1; @Field(9) f1 : number = 123;
