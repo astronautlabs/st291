@@ -50,7 +50,7 @@ export class Packet extends BitstreamElement {
     checksum : number = 0; // todo
 }
 
-@Variant(i => true, { priority: -1 })
+@Variant(i => true, { priority: 'last' })
 export class UnknownPacket extends Packet {
     @Field(i => i.userDataCount, { serializer: new ST291Serializer() })
     userDataWords : Buffer;
