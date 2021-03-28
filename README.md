@@ -1,6 +1,7 @@
 # @/st291
 
 [![npm](https://img.shields.io/npm/v/@astronautlabs/st291)](https://npmjs.com/package/@astronautlabs/st291)
+[![CircleCI](https://circleci.com/gh/astronautlabs/st291.svg?style=svg)](https://circleci.com/gh/astronautlabs/st291)
 
 > **[📜 ST 291-1:2011](https://ieeexplore.ieee.org/document/7291794)**  
 > Ancillary Data Packet and Space Formatting
