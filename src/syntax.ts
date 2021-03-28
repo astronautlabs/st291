@@ -47,7 +47,7 @@ export class Packet extends BitstreamElement {
     @Marker() $userDataEnd;
     @Marker() $checksumEnd;
     
-    @Field(10, { writtenValue: i => checksum(this) })
+    @Field(10, { writtenValue: i => checksum(i) })
     checksum : number = 0;
 }
 
