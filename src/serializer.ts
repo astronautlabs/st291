@@ -3,7 +3,7 @@ import { Serializer as ISerializer } from "@astronautlabs/bitstream";
 import { parity } from "./parity";
 
 export class Serializer implements ISerializer {
-    async read(reader: BitstreamReader, type: any, parent: BitstreamElement, field: FieldDefinition): Promise<any> {
+    *read(reader: BitstreamReader, type: any, parent: BitstreamElement, field: FieldDefinition) {
         let length = resolveLength(field.length, parent, field);
 
         // Interpret length as number of 10-bit words, with 8-bit data and 2-bit parity
@@ -11,8 +11,15 @@ export class Serializer implements ISerializer {
         let buffer = Buffer.alloc(length);
 
         for (let i = 0; i < length; ++i) {
-            let wireParity = await reader.read(2);
-            buffer[i] = await reader.read(8);
+            if (!reader.isAvailable(2))
+                yield 2;
+
+            let wireParity = reader.readSync(2);
+
+            if (!reader.isAvailable(8))
+                yield 8;
+
+            buffer[i] = reader.readSync(8);
             let expectedParity = parity(buffer[i]);
             if (expectedParity !== wireParity) {
                 console.error(
