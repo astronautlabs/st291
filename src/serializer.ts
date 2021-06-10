@@ -37,7 +37,7 @@ export class Serializer implements ISerializer {
     write(writer: BitstreamWriter, type: any, parent: BitstreamElement, field: FieldDefinition, buffer: any) {
         let length = resolveLength(field.length, parent, field);
 
-        if (!(buffer instanceof Buffer))
+        if (!(buffer instanceof Buffer) && !(buffer instanceof Uint8Array))
             throw new Error(`Value must be Buffer`);
         
         if (field.options?.buffer?.truncate === false)
