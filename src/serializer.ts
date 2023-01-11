@@ -38,7 +38,7 @@ export class Serializer implements ISerializer {
         let length = resolveLength(field.length, parent, field);
 
         if (!(buffer instanceof Buffer) && !(buffer instanceof Uint8Array))
-            throw new Error(`Value must be Buffer`);
+            throw new Error(`Value must be Buffer or Uint8Array`);
         
         if (field.options?.buffer?.truncate === false)
             length = buffer.length;
