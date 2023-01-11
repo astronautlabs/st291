@@ -32,7 +32,7 @@ export class Packet extends BitstreamElement {
     @Field(8, { presentWhen: i => (i.did & 0x80) !== 0 })
     dataBlockNumber : number;
 
-    @Field(2, { writtenValue: i => parity(i.userDataCount) })
+    @Field(2, { writtenValue: i => parity(i.measure(i => i.$userDataStart, i => i.$userDataEnd) / 10) })
     userDataCountParity : number;
 
     @Field(8, {
