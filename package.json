@@ -1,6 +1,6 @@
 {
   "name": "@astronautlabs/st291",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "access": "public",
   "publishConfig": {
     "access": "public"
